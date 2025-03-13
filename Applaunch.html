@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>App Launcher</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+      text-align: center;
+      padding-top: 50px;
+    }
+    h1 {
+      color: #333;
+    }
+    .app-buttons {
+      margin-top: 20px;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 15px 32px;
+      font-size: 16px;
+      cursor: pointer;
+      margin: 5px;
+      border-radius: 8px;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    input {
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 20px;
+      width: 80%;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    .extra-apps {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>App Launcher</h1>
+
+  <div class="app-buttons">
+    <button onclick="openApp('https://www.instagram.com')">Instagram</button>
+    <button onclick="openApp('https://wa.me')">WhatsApp</button>
+    <button onclick="openApp('https://www.facebook.com')">Facebook</button>
+    <button onclick="openApp('https://www.youtube.com')">YouTube</button>
+    <button onclick="openApp('https://twitter.com')">Twitter</button>
+    <button onclick="openApp('chrome://newtab')">Chrome</button>
+  </div>
+
+  <div class="extra-apps">
+    <input type="text" id="extraAppURL" placeholder="Enter app URL to add" />
+    <button onclick="addExtraApp()">Add Extra App</button>
+  </div>
+
+  <div id="extraButtons" class="app-buttons"></div>
+
+  <script>
+    function openApp(url) {
+      window.open(url, '_blank');
+    }
+
+    function addExtraApp() {
+      const appURL = document.getElementById("extraAppURL").value;
+      if (appURL) {
+        const extraButtons = document.getElementById("extraButtons");
+        const newButton = document.createElement("button");
+        newButton.innerHTML = "Open Extra App";
+        newButton.onclick = function() {
+          openApp(appURL);
+        };
+        extraButtons.appendChild(newButton);
+        document.getElementById("extraAppURL").value = ''; // Reset input
+      } else {
+        alert("Please enter a valid URL!");
+      }
+    }
+  </script>
+</body>
+</html>
